@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise</title>
+</head>
+
+<body>
+    <div>Promise例子</div>
+    <script>
+        //立即执行
+        // var p = new Promise(function (resolve, reject) {
+        //     console.log("create a promise!");
+        //     resolve('success');
+        // });
+        // console.log("after new promise!");
+        // p.then(function (value) {
+        //     console.log(value);
+        // });
+        // //三种状态
+        // var p1 = new Promise(function (resolve, reject) {
+        //     resolve(1);
+        // });
+        // var p2 = new Promise(function (resolve, reject) {
+        //     setTimeout(() => {
+        //         resolve(2);
+        //     }, 500);
+        // });
+        // var p3 = new Promise(function (resolve, reject) {
+        //     setTimeout(() => {
+        //         reject(3);
+        //     }, 500);
+        // })
+        // console.log(p1);
+        // console.log(p2);
+        // console.log(p3);
+        // setTimeout(() => {
+        //     console.log(p2);
+        // }, 1000);
+        // setTimeout(() => {
+        //     console.log(p3)
+        // }, 1000);
+        // p1.then(function (value) {
+        //     console.log(value);
+        // });
+        // p2.then(function (value) {
+        //     console.log(value);
+        // });
+        // p3.catch(function (err) {
+        //     console.log(err);
+        // });
+        //状态的不可逆性
+        // var p4 = new Promise(function (resolve, reject) {
+        //     resolve('success1');
+        //     resolve('success2');
+        // });
+        // var p5 = new Promise(function (resolve, reject) {
+        //     resolve('success');
+        //     reject('reject');
+        // });
+        // p4.then(function (value) {
+        //     console.log(value, 'p4');
+        // });
+        // p5.then(function (value) {
+        //     console.log(value, 'p5');
+        // });
+        //链式调用
+        // var p6 = new Promise(function (resolve, reject) {
+        //     resolve(1);
+        // });
+        // p6.then(function (value) {
+        //     console.log(value, 'p6');
+        //     return value * 2;
+        // }).then(function (value) {
+        //     console.log(value, 'p6');
+        // }).then(function (value) {
+        //     console.log(value, 'p6');
+        // }).then(function (value) {
+        //     console.log(value, 'p6');
+        //     return Promise.reject('reject');
+        // }).then(function (value) {
+        //     console.log('resolve:' + value, 'p6');
+        // }, function (err) {
+        //     console.log('reject:' + err)
+        // });
+        //Promise.then()回掉异步性
+        // var p7 = new Promise(function (resolve, reject) {
+        //     resolve('success');
+        // });
+        // p7.then(function (value) {
+        //     //异步
+        //     console.log(value, 'p7');
+        // });
+        // console.log('which one is called fisrst?');
+        //Promise中的异常
+        // var p1 = new Promise(function (resolve, reject) {
+        //     foo.bar();
+        //     resolve(1);
+        // });;
+        // p1.then(function (value) {
+        //     console.log('p1 then value:' + value);
+        // }, function (err) {
+        //     console.log('p1 then err:' + err);
+        // }).then(function (value) {
+        //     console.log('p1 then then value:', value);
+        // }, function (err) {
+        //     console.log('p1 then then err:' + err);
+        // });
+        // var p2 = new Promise(function (resolve, reject) {
+        //     resolve(2);
+        // });
+        // p2.then(function (value) {
+        //     console.log('p2 then value:' + value);
+        //     foo.bar();
+        // }, function (err) {
+        //     console.log('p2 then err:' + err);
+        // }).then(function (value) {
+        //     console.log('p2 then then values:' + value);
+        // }, function (err) {
+        //     console.log('p2 then then err:' + err);
+        //     return 1;
+        // }).then(function (value) {
+        //     console.log('p2 then then then value:' + value);
+        // }, function (err) {
+        //     console.log('p2 then then then err:', err);
+        // });
+        //Promise.resolve()
+        // var p1 = Promise.resolve(1);
+        // var p2 = Promise.resolve(p1);
+        // var p3 = new Promise(function (resolve, reject) {
+        //     resolve(1);
+        // });
+        // var p4 = new Promise(function (resolve, reject) {
+        //     resolve(p1);
+        // });
+        // console.log(p1 === p2);
+        // console.log(p1 === p3);
+        // console.log(p1 === p4);
+        // console.log(p3 === p4);
+        // p4.then(function (value) {
+        //     console.log('p4=' + value);
+        // });
+        // p2.then(function (value) {
+        //     console.log('p2=' + value);
+        // });
+        // p1.then(function (value) {
+        //     console.log('p1=' + value);
+        // });
+        //resolve vs reject
+        var p1 = new Promise(function (resolve, reject) {
+            //resolve对传入的promise进行‘拆箱’操作，次过程是异步的
+            resolve(Promise.resolve('resolvue'));
+        });
+        var p2 = new Promise(function (resolve, reject) {
+            // 传入的promise回掉reject不具备拆箱能力
+            resolve(Promise.reject('reject'));
+        });
+        var p3 = new Promise(function (resolve, reject) {
+            reject(Promise.resolve('resolvue'));
+        });
+        p1.then(function fulfilled(value) {
+            console.log('fulfilled:' + value);
+        }, function rejected(err) {
+            console.log('rejected:' + err);
+        });
+        p2.then(function fulfilled(value) {
+            console.log('fulfilled:' + value);
+        }, function rejected(err) {
+            console.log('rejected:' + err);
+        });
+        p3.then(function fulfilled(value) {
+            console.log('fulfilled:' + value);
+        }, function rejected(err) {
+            console.log('rejected:' + err);
+        });
+    </script>
+</body>
+
+</html>
