@@ -1,0 +1,46 @@
+.comment-input {
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
+.comment-field {
+    margin-bottom: 20px;
+}
+.comment-field-name{
+    height: 36px;
+    line-height: 36px;
+}
+.comment-field-input {
+    display: inline;
+    float: right;
+}
+input{
+    width: 350px;
+    height: 30px;
+    border: 1px solid #ddd;
+}
+textarea{
+    width: 350px;
+    height: 150px;
+    border: 1px solid #ddd;
+}
+.comment-field-button button{
+    width: 70px;
+    height: 30px;
+    background-color: rgb(2, 189, 126);
+    border: none;
+    color: #eee;
+    float: right;
+}
+
+.clearfix:after {
+    content: ""; 
+    height: 0; 
+    line-height: 0; 
+    display: block; 
+    visibility: hidden;
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
