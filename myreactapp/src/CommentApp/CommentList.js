@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Comment from './Comment'
+import PropTypes from 'prop-types';
 class ComponentList extends Component{
-    static defautProps={
-        comments:[]
+    static propTypes = {
+        comments: PropTypes.array
     }
     render(){
         return(
