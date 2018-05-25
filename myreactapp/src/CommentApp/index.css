@@ -7,7 +7,25 @@
     padding: 20px;
 }
 
+.comment{
+    border-bottom: 1px solid #f1f1f1;
+}
 .comment-user{
     float: left;
     color:rgb(2, 189, 126);
+}
+.comment-createdtime{
+    float: right;
+}
+
+.clearfix:after {
+    content: ""; 
+    height: 0; 
+    line-height: 0; 
+    display: block; 
+    visibility: hidden;
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
 }
