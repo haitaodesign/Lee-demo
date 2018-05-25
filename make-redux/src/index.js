@@ -27,4 +27,29 @@ const appState = {
     contentDOM.style.color = content.color
   }
 
-  renderApp(appState)
+  function  stateChanger(state, action) {
+    switch (action.type) {
+      case 'UPDATE_TITLE_TEXT':
+        state.title.text = action.text
+        break
+      case 'UPDATE_TITLE_COLOR':
+        state.title.color = action.color
+        break
+      default:
+        break
+    }
+  }
+
+  function createStore(state, stateChanger) {
+    const getState = () => state
+    const dispatch = (action) => stateChanger(state, action)
+    return {getState, dispatch} 
+  }
+
+  const store = createStore(appState,stateChanger)
+  renderApp(store.getState())
+
+  store.dispatch({type:'UPDATE_TITLE_TEXT', text:'《React.js 小书》'})
+
+  store.dispatch({type:'UPDATE_TITLE_COLOR', color:'blue'})
+  renderApp(store.getState())
