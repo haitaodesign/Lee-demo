@@ -8,6 +8,9 @@ class ComponentInput extends Component{
             content:''
         }
     }
+    componentDidMount(){
+        this.textarea.focus()
+    }
     handleUserNameClick(e){
         this.setState({
             username:e.target.value
@@ -37,7 +40,7 @@ class ComponentInput extends Component{
                 <div className="comment-field clearfix">
                     <span className="comment-field-name">评论内容：</span>
                     <div className="comment-field-input">
-                        <textarea value={this.state.content} onChange={this.handleContentClick.bind(this)}/>
+                        <textarea ref={(textarea)=>this.textarea = textarea} value={this.state.content} onChange={this.handleContentClick.bind(this)}/>
                     </div>
                 </div>
                 <div className="comment-field-button">
