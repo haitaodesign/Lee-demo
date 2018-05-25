@@ -8,6 +8,7 @@
 }
 
 .comment{
+    position: relative;
     border-bottom: 1px solid #f1f1f1;
 }
 .comment-user{
@@ -16,6 +17,12 @@
 }
 .comment-createdtime{
     float: right;
+}
+.comment-delete{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color:rgb(2, 189, 126);
 }
 
 .clearfix:after {

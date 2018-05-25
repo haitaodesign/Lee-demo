@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import './index.css'
 class Comment extends Component {
   static propTypes = {
-    comment: PropTypes.object.isRequired
+    comment: PropTypes.object.isRequired,
+    onDeleteComment: PropTypes.func,
+    index: PropTypes.number
   }
   constructor () {
     super()
@@ -25,6 +27,11 @@ class Comment extends Component {
       : `${Math.round(Math.max(duration,1))} 秒前`
     })
   }
+  handleDeleteComment () {
+    if(this.props.onDeleteComment){
+      this.props.onDeleteComment(this.props.index)
+    }
+  }
   render () {
     const comment = this.props.comment
     return (
@@ -35,6 +42,10 @@ class Comment extends Component {
         <p>{comment.content}</p>
         <span className='comment-createdtime'>
         {this.state.timeString}
+        </span>
+        <span onClick={this.handleDeleteComment.bind(this)}
+              className='comment-delete'>
+          删除
         </span>
       </div>
     )
