@@ -2,10 +2,27 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Header extends Component {
-    state = {  }
+    static contextTypes = {
+        store: PropTypes.object
+    }
+    constructor(){
+        super()
+        this.state = { themeColor: '' }
+    }
+
+    componentWillMount(){
+        const { store } = this.context
+        this._upadteThemeColor()
+        store.subscribe(() => this._upadteThemeColor())
+    }
+    _upadteThemeColor () {
+        const { store } = this.context
+        const state = store.getState()
+        this.setState({ themeColor: state.themeColor })
+    }
     render() {
         return (
-            <h1>React.js 小书</h1>
+            <h1 style={{ color: this.state.themeColor }}>React.js 小书</h1>
         );
     }
 }
