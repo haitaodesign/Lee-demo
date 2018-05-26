@@ -1,43 +1,69 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from './react-redux'
 
 class ThemeSwtich extends Component {
-    static contextTypes = {
-        store: PropTypes.object
+    static propTypes = {
+        themeColor: PropTypes.string,
+        onSwitchColor: PropTypes.func
     }
 
-    constructor () {
-        super()
-        this.state = { themeColor: '' }
-    }
+    // static contextTypes = {
+    //     store: PropTypes.object
+    // }
 
-    componentWillMount () {
-        const { store } = this.context
-        this._updateThemeColor()
-        store.subscribe(() => this._updateThemeColor())
-    }
+    // constructor () {
+    //     super()
+    //     this.state = { themeColor: '' }
+    // }
 
-    _updateThemeColor () {
-        const { store } = this.context
-        const state = store.getState()
-        this.setState({ themeColor: state.themeColor })
-    }
+    // componentWillMount () {
+    //     const { store } = this.context
+    //     this._updateThemeColor()
+    //     store.subscribe(() => this._updateThemeColor())
+    // }
+
+    // _updateThemeColor () {
+    //     const { store } = this.context
+    //     const state = store.getState()
+    //     this.setState({ themeColor: state.themeColor })
+    // }
     handleSwitchColor (color) {
-        const { store } = this.context
-        store.dispatch({
-            type: 'CHANGE_COLOR',
-            themeColor: color
-        })
+        // const { store } = this.context
+        // store.dispatch({
+        //     type: 'CHANGE_COLOR',
+        //     themeColor: color
+        // })
+        if(this.props.onSwitchColor) {
+            this.props.onSwitchColor(color)
+        }
     }
     render() {
         return (
             <div>
                 <button onClick={this.handleSwitchColor.bind(this,'red')}
-                        style={{ color: this.state.themeColor }}>Red</button>
+                        style={{ color: this.props.themeColor }}>Red</button>
                 <button onClick={this.handleSwitchColor.bind(this,'blue')}
-                        style={{ color: this.state.themeColor }}>Blue</button>
+                        style={{ color: this.props.themeColor }}>Blue</button>
             </div>
         );
     }
 }
-export default ThemeSwtich;
+
+const mapStateToProps = (state) => {
+    return {
+        themeColor: state.themeColor
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSwitchColor: (color) => {
+            dispatch({ type: 'CHANGE_COLOR',themeColor: color})
+        }
+    }
+}
+
+ThemeSwtich = connect(mapStateToProps, mapDispatchToProps)(ThemeSwtich)
+
+export default ThemeSwtich
