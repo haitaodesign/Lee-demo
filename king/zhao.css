@@ -1,0 +1,52 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+#zhengye{
+	background: url(img/timg.jpg);
+	background-size: 100% 100%;
+	width: 1345px;
+	height: 650px;
+}
+#view{
+	width: 400px;
+	height: 400px;
+	background: lightskyblue;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+#tan{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 220px;
+	left: 570px;
+	color: white;
+	display: none;
+	text-align: center;
+	line-height: 115px;
+	font-size: 40px;
+	background: url(img/timg.gif);
+	background-size: 100% 100%;
+	font-weight: bolder;
+	text-shadow: 3px 3px 3px orange;
+}
+#tan2{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 220px;
+	left: 570px;
+	color: white;
+	display: none;
+	text-align: center;
+	line-height: 115px;
+	font-size: 40px;
+	background: url(img/201205161136356106.gif);
+	background-size: 100% 100%;
+	font-weight: bolder;
+	text-shadow: 3px 3px 3px orange;
+}
+.xiaozi{
+	font-size: 25px;
+}
